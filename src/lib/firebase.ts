@@ -18,16 +18,7 @@ import {
 } from 'firebase/firestore';
 import { GameState, Player, Round, User, Scale, Guess, SubmittedClue } from '../types/game';
 import { calculateRoundScores } from './scoring';
-
-// Your Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAZQzNAP1svjrT25dENMlM7Bfm-gYgwg3Q",
-  authDomain: "mindspan-743e4.firebaseapp.com",
-  projectId: "mindspan-743e4",
-  storageBucket: "mindspan-743e4.firebasestorage.app",
-  messagingSenderId: "302111185898",
-  appId: "1:302111185898:web:8768a4a9a70a0eff663093"
-};
+import { firebaseConfig } from '../../config.js';
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

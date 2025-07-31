@@ -78,9 +78,16 @@ Wavelength is a round-based party game where:
    - Firestore Database
    - Hosting
 
-   Update `src/lib/firebase.ts` with your Firebase config:
-   ```typescript
-   const firebaseConfig = {
+   **Configure Firebase (IMPORTANT - Security)**
+   
+   Copy the example configuration file:
+   ```bash
+   cp config.example.js config.js
+   ```
+   
+   Update `config.js` with your Firebase configuration:
+   ```javascript
+   export const firebaseConfig = {
      apiKey: "your-api-key",
      authDomain: "your-project.firebaseapp.com",
      projectId: "your-project-id",
@@ -89,6 +96,8 @@ Wavelength is a round-based party game where:
      appId: "your-app-id"
    };
    ```
+   
+   ⚠️ **Security Note**: The `config.js` file contains sensitive API keys and is automatically excluded from version control via `.gitignore`. Never commit this file to your repository.
 
 4. **Deploy Firestore Rules**
    ```bash

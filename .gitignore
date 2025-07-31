@@ -65,5 +65,9 @@ node_modules/
 # dotenv environment variables file
 .env
 
+# Firebase configuration file (contains sensitive API keys)
+config.js
+config.d.ts
+
 # dataconnect generated files
 .dataconnect
