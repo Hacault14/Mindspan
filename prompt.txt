@@ -1,0 +1,170 @@
+You are a senior full-stack software engineer. I want you to scaffold a web-based multiplayer party game inspired by Wavelength, built as a Progressive Web App (PWA), optimized for mobile. The game has the following requirements:
+
+🕹️ Game Concept
+A round-based party game where one player (the "Clue Giver") is given a random scale (e.g., "Hot – Cold") and a hidden target value on that scale (e.g., 72% toward Hot).
+
+The Clue Giver provides a word or phrase they believe will guide players toward the target.
+
+All other players attempt to position a needle along the scale to match where they think the hidden value is.
+
+In this competitive version, each player independently guesses the needle position.
+
+Players earn points based on proximity to the target.
+
+The Clue Giver earns bonus points if players cluster around the correct region.
+
+A Teams Mode allows 2+ teams to compete across multiple rounds.
+
+🌐 Tech Stack
+Frontend Framework: React + TypeScript
+
+Styling: Tailwind CSS
+
+State Management: Zustand or React Context
+
+Routing: React Router
+
+Authentication: Firebase Auth (anonymous or nickname-based)
+
+Backend / DB: Firebase Firestore or Realtime Database
+
+Hosting / PWA: Firebase Hosting or Vercel
+
+Real-Time Sync: Firebase Realtime Database or Firestore snapshot listeners
+
+Build Target: Mobile-first responsive web app + PWA install support
+
+🧱 Features and Requirements
+🔐 Authentication
+Join game as a guest with nickname
+
+Optionally persist identity locally via Firebase Auth (anonymous)
+
+🏠 Lobby System
+Create / Join game lobby via code or shareable URL
+
+Real-time player list with roles: Host, Clue Giver, Players
+
+Host can choose game mode: Free-For-All or Teams
+
+Assign players to teams dynamically if team mode is on
+
+Start game button controlled by Host
+
+🎮 Game Loop
+Each round includes:
+
+Every player is assigned a scale randomly (e.g. "Strong – Weak", "Old – New")
+
+Random target percentage (0–100)
+
+Players must enter one clue (text input)
+
+After 2 minutes or after all player have entered their clues, guessing starts
+
+If there are 5 or less players, each player gets 2 scales and enter one clue for each. One first, followed by a second
+
+Guessing starts
+
+Other players drag needle to guess position on scale
+
+After all guesses submitted or timer expires:
+
+Reveal target
+
+Score players based on proximity
+
+Score clue giver based on how clustered correct guesses are
+
+Update team scores if in team mode
+
+Display round results screen
+
+Repeat until N rounds complete
+
+📊 Scoring System
+Max score per round = 100 pts
+
+Example:
+
+±5% = 100 pts
+
+±10% = 80 pts
+
+±20% = 50 pts
+
+etc.
+
+Clue Giver gets bonus for average accuracy of guesses
+
+🧠 Game Logic Requirements
+Round timer
+
+Turn-based Clue Giver rotation
+
+Game state stored in Firestore or Realtime DB
+
+Sync for all players: game state, round, guesses, scores
+
+📱 UI/UX Requirements
+Mobile-first responsive layout
+
+Drag-based needle selector for scale
+
+Visual scale with dynamic marker reveal
+
+Loading and reconnect handling
+
+Game summary / leaderboard at end
+
+⚙️ PWA Capabilities
+Add-to-home-screen support
+
+Offline splash screen
+
+Responsive icons and manifest.json
+
+Workbox service worker generation
+
+📁 Project Structure
+bash
+Copy
+Edit
+/src
+  /components
+    GameBoard.tsx
+    Lobby.tsx
+    PlayerList.tsx
+    Scoreboard.tsx
+    NeedleSlider.tsx
+  /pages
+    index.tsx
+    /game/[gameId].tsx
+  /hooks
+    useGameState.ts
+  /lib
+    firebase.ts
+    scoring.ts
+  /types
+    game.ts
+  App.tsx
+  main.tsx
+/firebase.json
+/public/manifest.json
+/tailwind.config.js
+✅ Deliverables for Initial Scaffold
+Firebase setup (Auth + Firestore or Realtime DB)
+
+Game lobby creation/joining
+
+Realtime player list in lobby
+
+Basic turn system + clue input UI
+
+Needle selector component for guesses
+
+Real-time sync of guesses
+
+Score reveal and scoreboard update
+
+PWA support (manifest, service worker, install prompt)

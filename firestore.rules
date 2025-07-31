@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Games collection
+    match /games/{gameId} {
+      allow read: if true; // Anyone can read game data
+      allow create: if request.auth != null; // Must be authenticated to create
+      allow update: if request.auth != null; // Simplified for now
+      allow delete: if false; // No deletion allowed
+    }
+    
+    // Users collection
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Game invites collection
+    match /invites/{inviteId} {
+      allow read: if true;
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth != null && 
+        resource.data.createdBy == request.auth.uid;
+    }
+  }
+} 
